@@ -31,12 +31,8 @@ namespace WpfApp1
             {
                 var db = new kekContext();
                 var users = db.Users.ToList();
-                userTable.ItemsSource = users;
 
-                if (AppState.CurrentUser == null)
-                {
-                    AppState.CurrentUser = users.FirstOrDefault();
-                }
+                userTable.ItemsSource = users;
             }
             catch(Exception ex)
             {
@@ -61,4 +57,5 @@ namespace WpfApp1
     }
 
 }
+
 
