@@ -1,6 +1,5 @@
-﻿using System.Text;
-using System.Linq;
-using WpfApp1.Models;
+﻿using System.Linq;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -10,6 +9,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WpfApp1.Models;
 
 namespace WpfApp1
 {
@@ -22,6 +22,7 @@ namespace WpfApp1
         {
             InitializeComponent();
             LoadUsers();
+            authTextBlock.Text = AppState.CurrentUser!.FullName;
         }
 
         private void LoadUsers()
@@ -30,8 +31,12 @@ namespace WpfApp1
             {
                 var db = new kekContext();
                 var users = db.Users.ToList();
-
                 userTable.ItemsSource = users;
+
+                if (AppState.CurrentUser == null)
+                {
+                    AppState.CurrentUser = users.FirstOrDefault();
+                }
             }
             catch(Exception ex)
             {
@@ -48,11 +53,12 @@ namespace WpfApp1
         {
             var db = new kekContext();
 
-            var FullName = SearchBox.Text;
+            var fullName = SearchBox.Text;
 
-            var users = string.IsNullOrWhiteSpace(FullName) ? db.Users.ToList() : db.Users.Where(u => u.FullName.Contains(FullName)).ToList();
+            var users = string.IsNullOrWhiteSpace(fullName) ? db.Users.ToList() : db.Users.Where(u => u.FullName.Contains(fullName)).ToList();
             userTable.ItemsSource = users;
         }
     }
 
 }
+

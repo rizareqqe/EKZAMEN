@@ -17,6 +17,7 @@
         </DataGrid>
         <Button x:Name="SearchButton" Content="Поиск" HorizontalAlignment="Left" Margin="524,386,0,0" VerticalAlignment="Top" Click="SearchButton_Click"/>
         <TextBox x:Name="SearchBox" HorizontalAlignment="Left" Margin="304,386,0,0" TextWrapping="Wrap" Text="Введи имя" VerticalAlignment="Top" Width="120"/>
+        <TextBlock x:Name="authTextBlock" HorizontalAlignment="Left" Margin="727,23,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>
